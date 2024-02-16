@@ -9,10 +9,8 @@
 
 .list-bg {
     background: #EEDECD;
-}
-
-.list-bg {
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .list-bg img {
@@ -24,4 +22,26 @@
     font-size: 25px;
     font-weight: 700;
     color: #A73939;
+}
+
+.contact-bg {
+
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.font-sec-3 {
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 50px;
+  margin-top: 6%;
+  margin-left: 3%;
+}
+
+.contact-span-1 {
+     color: #696140;
+     font-weight: 700;
+     font-size: 66px;
 }
