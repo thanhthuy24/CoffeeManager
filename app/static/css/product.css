@@ -42,3 +42,10 @@
     font-weight: 700;
     color: #426B1F;
 }
+
+.search-btn {
+    border-radius: 4px;
+    background: #426B1F;
+    color: white;
+    border: 1px;
+}

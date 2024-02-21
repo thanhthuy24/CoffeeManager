@@ -23,14 +23,14 @@ if __name__ == '__main__':
         # db.session.add(u)
         # db.session.commit()
         #
-        # c1 = Category(name='Cake')
-        # c2 = Category(name='Coffee')
-        # c3 = Category(name='Dessert')
-        #
-        # db.session.add(c1)
-        # db.session.add(c2)
-        # db.session.add(c3)
-        # db.session.commit()
+        c1 = Category(name='Cake')
+        c2 = Category(name='Coffee')
+        c3 = Category(name='Dessert')
+
+        db.session.add(c1)
+        db.session.add(c2)
+        db.session.add(c3)
+        db.session.commit()
         # #
         p1 = Product(name='Chocolate chip cookie', price=15000, category_id=1,
                      image="static/images/img7.jpg")
