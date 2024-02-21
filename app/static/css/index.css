@@ -45,3 +45,29 @@
      font-weight: 700;
      font-size: 66px;
 }
+
+.font-sec-4 {
+    font-family: "Josefin Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    margin-left: 56%;
+    font-size: 28px;
+    border-radius: 50px;
+    padding: 13px 41px;
+    background: #7A4015;
+    color: white;
+}
+
+.introduce-bg {
+    background: #F6EDCE;
+}
+
+.introduce-div {
+    height: 500px;
+    margin-top: 9%;
+    justify-content: space-around;
+    font-size: 90px;
+    font-style: oblique;
+}
+
