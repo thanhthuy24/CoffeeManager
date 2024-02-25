@@ -1,0 +1,28 @@
+.div-side {
+    background: #FAFAF5;
+    border: 1px solid #E6E6E6;
+    border-radius: 26px;
+    width: 900px;
+}
+
+.info-left-side {
+    margin-top: 4%;
+    margin-left: 6%;
+    width: 500px;
+}
+
+.decor-flex-justify{
+    justify-content: space-between;
+}
+
+.title-pros-basket{
+    font-size: larger;
+    font-weight: 700;
+}
+
+.input-amount {
+    border-radius: 10px;
+    border: 1px solid #E6E6E6;
+    padding: 5px 13px;
+    width: 130px;
+}

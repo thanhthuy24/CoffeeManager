@@ -1,0 +1,54 @@
+{% extends 'layout/base.html'%}
+
+{% block content %}
+<section>
+    <div class="d-flex" style="justify-content: space-between; border-bottom: 2px solid #E6E6E6;">
+        <div class="product-title">Basket <span style="font-size: medium;">0 item</span></div>
+        <div class="d-flex filter-div-btn">
+            <form style="margin-top: 4%" method="get" action="/cake">
+                <input style="border-radius: 8px;" type="text" placeholder="Search.." name="kw">
+                <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <div>
+                <button class="filter-btn">Default</button>
+            </div>
+            <div>
+                <button class="filter-btn">A->Z</button>
+            </div>
+            <div>
+                <button class="filter-btn">Price</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-4">
+    <div class="d-flex decor-flex-justify" >
+        <div class="div-side" style="height: 200px">
+            <div class="d-flex decor-flex-justify">
+                <div class="d-flex">
+                    <img style="width: 200px; border-radius: 26px 0 0 26px;" src="static/images/img4.jpg">
+                    <div class="info-left-side">
+                        <h4 class="title-pros-basket">Chocolate chip cookie</h4>
+                        <p class="card-text">15000 VND / 1 box</p>
+                        <p>Amount: <input class="input-amount" type="text" 3></p>
+                    </div>
+                </div>
+
+                <p class="info-left-side title-pros-basket">15000 VND</p>
+            </div>
+        </div>
+
+        <div style="width: 350px; padding: 20px;" class="div-side">
+            <!--        tong tien-->
+            <h4 class="title-pros-basket">Order summary</h4>
+            <p>Subtotal <span style="margin-left: 48%;">250000</span>VND</p>
+            <p>Shipping <span style="margin-left: 50%;">12000</span>VND</p>
+            <p>Tax <span style="margin-left: 63%;">25000</span>VND</p>
+            <h4 class="title-pros-basket">Total <span style="margin-left: 45%;">287000</span>VND</p></h4>
+            <a class="nav-link basket" style="width: 300px; color: white;" href="#">Continue to payment<i style="margin-left: 35%;" class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

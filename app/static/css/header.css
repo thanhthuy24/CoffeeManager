@@ -1,20 +1,24 @@
 .font-header {
     font-size: large;
     margin-top: 1%;
-    margin-left: 30%
+    margin-left: 43%
 }
 
-ul li {
-    margin: 1% 4%;
+nav ul li {
+    margin: 1% 0%;
     padding: 10px;
 }
 
 .basket {
-    margin-top: -3px;
+    margin-top: 11px;
     border: 1px solid green;
-    border-radius: 20px;
-    padding: 15px 35px;
+    border-radius: 14px;
+    padding: 8px 16px;
     background: #426B1F;
-    color: white;
     font-weight: 500;
+    width: 132px;
+}
+
+.basket a {
+    color: white;
 }
