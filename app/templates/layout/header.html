@@ -107,17 +107,22 @@
                 <li class="nav-item">
                     <a style="width: 112px; color: black;" class="nav-link" href="#">Who we are</a>
                 </li>
-                <li class="nav-item">
+
+                {% if current_user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a style= "color: black" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">My profile</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">My account</a></li>
+                        <li><a class="dropdown-item" href="#">Setting</a></li>
+                        <li><a class="dropdown-item" href="/logout">Log out</a></li>
+                    </ul>
+                </li>
+                {% else %}
+                 <li class="nav-item">
                     <a style="width: 112px; color: black;" class="nav-link" href="/login">Login</a>
                 </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a style= "color: black" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">My profile</a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a class="dropdown-item" href="#">My account</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Setting</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Log out</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                {% endif %}
+
                  <li class="nav-item basket">
                     <a class="nav-link" style="color: white;" href="/basket">Basket <span>(0)</span>
 
