@@ -1,9 +1,9 @@
 import math
 
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, jsonify, session
 from app import app, dao, login
 from flask_login import login_user, logout_user, login_required
-
+import utils
 
 @app.route('/')
 def index():
@@ -58,6 +58,33 @@ def get_user(user_id):
 def process_user_logout():
     logout_user()
     return redirect('/')
+
+
+@app.route('/api/basket', methods=['post'])
+def add_to_basket():
+    data = request.json
+
+    basket = session.get('basket')
+    if basket is None:
+        basket = {}
+
+    id = str(data.get("id"))
+    if id in basket: #sp co trong gio hang
+        basket[id]['quantity'] += 1
+    else:  #sp ko co trong gio hang
+        basket[id] = {
+            "id": id,
+            "name": data.get("name"),
+            "price": data.get("price"),
+            "image": data.get("image"),
+            "quantity": 1
+        }
+
+    session['basket'] = basket
+
+    print(data)
+
+    return jsonify(utils.count_basket(basket))
 
 if __name__ == '__main__':
     app.run(debug=True)

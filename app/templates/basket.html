@@ -23,21 +23,28 @@
 </section>
 
 <section class="mt-4">
-    <div class="d-flex decor-flex-justify" >
-        <div class="div-side" style="height: 200px">
-            <div class="d-flex decor-flex-justify">
-                <div class="d-flex">
-                    <img style="width: 200px; border-radius: 26px 0 0 26px;" src="static/images/img4.jpg">
-                    <div class="info-left-side">
-                        <h4 class="title-pros-basket">Chocolate chip cookie</h4>
-                        <p class="card-text">15000 VND / 1 box</p>
-                        <p>Amount: <input class="input-amount" type="text" 3></p>
-                    </div>
-                </div>
+    {% if 'basket' in session %}
+    <div class="d-flex decor-flex-justify">
 
-                <p class="info-left-side title-pros-basket">15000 VND</p>
+        <div class="div-side" style="height: 153px">
+            {% for b in session['basket'].values() %}
+            <div class="div-side">
+                <div class="d-flex decor-flex-justify">
+                    <div class="d-flex">
+                        <img style="width: 200px; border-radius: 26px 0 0 26px;" src="{{ b.image }}">
+                        <div class="info-left-side">
+                            <h4 class="title-pros-basket">{{b.name}}</h4>
+                            <p class="card-text">{{b.price}}/ 1 box</p>
+                            <p>Amount: <input class="input-amount" type="text" 3></p>
+                        </div>
+                    </div>
+
+                    <p class="info-left-side title-pros-basket">{{b.price}}</p>
+                </div>
             </div>
+            {% endfor %}
         </div>
+
 
         <div style="width: 350px; padding: 20px;" class="div-side">
             <!--        tong tien-->
@@ -46,9 +53,12 @@
             <p>Shipping <span style="margin-left: 50%;">12000</span>VND</p>
             <p>Tax <span style="margin-left: 63%;">25000</span>VND</p>
             <h4 class="title-pros-basket">Total <span style="margin-left: 45%;">287000</span>VND</p></h4>
-            <a class="nav-link basket" style="width: 300px; color: white;" href="#">Continue to payment<i style="margin-left: 35%;" class="fa-solid fa-arrow-right"></i></a>
+            <a class="nav-link basket" style="width: 300px; color: white;" href="#">Continue to payment<i
+                    style="margin-left: 35%;" class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
-
+    {% else %}
+    <div class="text-info text-center">Nothing</div>
+    {% endif %}
 </section>
 {% endblock %}

@@ -58,16 +58,22 @@ if __name__ == '__main__':
         db.session.add(c3)
         db.session.commit()
         # # #
-        p1 = Product(name='Chocolate chip cookie', price=15000, category_id=1,
+        p1 = Product(name='Chocolate chip cookie', price=15000, category_id=3,
                      image="static/images/img7.jpg")
-        p2 = Product(name='Donut', price=20000, category_id=1,
+        p2 = Product(name='Donut', price=20000, category_id=3,
                      image="static/images/img8.jpg")
-        p3 = Product(name='Blueberry tart', price=18000, category_id=1,
+        p3 = Product(name='Blueberry tart', price=18000, category_id=3,
                      image="static/images/img9.jpg")
-        # # p4 = Product(name='Galaxy Tab S9', price=28000000, category_id=2,
-        # #              image="https://res.cloudinary.com/dxxwcby8l/image/upload/v1688179242/hclq65mc6so7vdrbp7hz.jpg")
-        # # p5 = Product(name='Note 13', price=20000000, category_id=1,
-        # #              image="https://res.cloudinary.com/dxxwcby8l/image/upload/v1688179242/hclq65mc6so7vdrbp7hz.jpg")
-        # #
-        db.session.add_all([p1, p2, p3])
+        p4 = Product(name='Heart jam cookie', price=15000, category_id=3,
+                     image="static/images/img11.jpg")
+        p5 = Product(name='Latte', price=20000, category_id=2,
+                     image="static/images/img12.jpg")
+        p6 = Product(name='Americano', price=18000, category_id=2,
+                     image="static/images/img13.jpg")
+        p7 = Product(name='Pink bows cake', price=15000, category_id=1,
+                     image="static/images/img14.jpg")
+        p8 = Product(name='Spring cake', price=20000, category_id=1,
+                     image="static/images/img15.jpg")
+
+        db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8])
         db.session.commit()

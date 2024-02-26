@@ -13,10 +13,11 @@ nav ul li {
     margin-top: 11px;
     border: 1px solid green;
     border-radius: 14px;
-    padding: 8px 16px;
+    padding: 8px 8px;
     background: #426B1F;
     font-weight: 500;
     width: 132px;
+    text-align: center;
 }
 
 .basket a {
