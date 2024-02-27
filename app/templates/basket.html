@@ -3,7 +3,7 @@
 {% block content %}
 <section>
     <div class="d-flex" style="justify-content: space-between; border-bottom: 2px solid #E6E6E6;">
-        <div class="product-title">Basket <span style="font-size: medium;">0 item</span></div>
+        <div class="product-title ">Basket <span class="basket-counter" style="font-size: medium;">{{ basket.total_quantity }}</span><span style="font-size: medium;"> items</span></div>
         <div class="d-flex filter-div-btn">
             <form style="margin-top: 4%" method="get" action="/cake">
                 <input style="border-radius: 8px;" type="text" placeholder="Search.." name="kw">
@@ -23,42 +23,47 @@
 </section>
 
 <section class="mt-4">
-    {% if 'basket' in session %}
-    <div class="d-flex decor-flex-justify">
 
+    <div class="d-flex decor-flex-justify">
+    {% if 'basket' in session %}
         <div class="div-side" style="height: 153px">
             {% for b in session['basket'].values() %}
-            <div class="div-side">
+            <div class="div-side" id="product{{b.id}}">
                 <div class="d-flex decor-flex-justify">
                     <div class="d-flex">
                         <img style="width: 200px; border-radius: 26px 0 0 26px;" src="{{ b.image }}">
                         <div class="info-left-side">
                             <h4 class="title-pros-basket">{{b.name}}</h4>
-                            <p class="card-text">{{b.price}}/ 1 box</p>
-                            <p>Amount: <input class="input-amount" type="text" 3></p>
+                            <p class="card-text">{{b.price}}VND/ 1 box</p>
+                            <p>Amount: <input class="input-amount" onblur="updateBasket({{b.id}}, this)" value="{{b.quantity}}" type="number" ></p>
                         </div>
                     </div>
 
-                    <p class="info-left-side title-pros-basket">{{b.price}}</p>
+                    <button class="btn btn-danger" onclick="deleteBasket({{b.id}}, this)" style="width: 42px; height: 40px;">&times;</button>
                 </div>
             </div>
             {% endfor %}
         </div>
+    {% else %}
+        <div class="text-info text-center">Nothing</div>
+    {% endif %}
 
 
         <div style="width: 350px; padding: 20px;" class="div-side">
             <!--        tong tien-->
             <h4 class="title-pros-basket">Order summary</h4>
-            <p>Subtotal <span style="margin-left: 48%;">250000</span>VND</p>
-            <p>Shipping <span style="margin-left: 50%;">12000</span>VND</p>
-            <p>Tax <span style="margin-left: 63%;">25000</span>VND</p>
-            <h4 class="title-pros-basket">Total <span style="margin-left: 45%;">287000</span>VND</p></h4>
+            <p>Subtotal <span style="margin-left: 48%;" class=" basket-total">{{basket.total_amount}}</span>VND</p>
+            <p>Shipping <span style="margin-left: 50%;">0</span>VND</p>
+            <p>Tax <span style="margin-left: 59%;" class="basket-tax">{{basket.tax_basket}}</span>VND</p>
+            <h4 class="title-pros-basket">Total <span style="margin-left: 40%;" class="basket-total-all">{{basket.total_basket}}</span>VND</p></h4>
+            {% if current_user.is_authenticated %}
             <a class="nav-link basket" style="width: 300px; color: white;" href="#">Continue to payment<i
                     style="margin-left: 35%;" class="fa-solid fa-arrow-right"></i></a>
+            {% else %}
+            <p><a href="/login?next=/cart">Click here</a> to login and payment!</p>
+            {% endif %}
         </div>
     </div>
-    {% else %}
-    <div class="text-info text-center">Nothing</div>
-    {% endif %}
+
 </section>
 {% endblock %}

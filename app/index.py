@@ -5,10 +5,10 @@ from app import app, dao, login
 from flask_login import login_user, logout_user, login_required
 import utils
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/cake')
 def product_page():
@@ -69,9 +69,9 @@ def add_to_basket():
         basket = {}
 
     id = str(data.get("id"))
-    if id in basket: #sp co trong gio hang
+    if id in basket:  # sp co trong gio hang
         basket[id]['quantity'] += 1
-    else:  #sp ko co trong gio hang
+    else:  # sp ko co trong gio hang
         basket[id] = {
             "id": id,
             "name": data.get("name"),
@@ -85,6 +85,38 @@ def add_to_basket():
     print(data)
 
     return jsonify(utils.count_basket(basket))
+
+
+# tang / giam so luong product
+@app.route('/api/basket/<product_id>', methods=['put'])
+def update_basket(product_id):
+    basket = session.get('basket')
+
+    if basket and product_id in basket:
+        quantity = request.json.get('quantity')
+        basket[product_id]['quantity'] = int(quantity)
+        # prods = basket[product_id]['quantity']
+    session['basket'] = basket
+    return jsonify(utils.count_basket(basket))
+
+
+@app.route('/api/basket/<product_id>', methods=['delete'])
+def delete_basket(product_id):
+    basket = session.get('basket')
+
+    if basket and product_id in basket:
+        del basket[product_id]
+
+    session['basket'] = basket
+    return jsonify(utils.count_basket(basket))
+
+# hien thi thanh header so luong product trong basket
+@app.context_processor
+def common_response():
+    return {
+        'basket': utils.count_basket(session.get('basket'))
+    }
+
 
 if __name__ == '__main__':
     app.run(debug=True)
