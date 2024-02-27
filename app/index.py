@@ -10,22 +10,47 @@ import utils
 def index():
     return render_template('index.html')
 
+
 @app.route('/cake')
 def product_page():
     kw = request.args.get('kw')
-    cate_id = request.args.get('cate_id')
+    # cate_id = request.args.get('cate_id')
     page = request.args.get('page')
 
-    prods = dao.get_products(kw, cate_id, page)
+    prods = dao.get_products(kw, 1, page)
 
     num = dao.count_product()
 
-    return render_template('products.html', products=prods, pages=math.ceil(num / app.config['PAGE_SIZE']))
+    return render_template('products.html', products=prods)
+    # , pages=math.ceil(num / app.config['PAGE_SIZE'])
 
 
-# @app.route('/login')
-# def login():
-#     return render_template('login.html')
+
+@app.route('/coffee')
+def product_page_coffee():
+    kw = request.args.get('kw')
+    # cate_id = request.args.get('cate_id')
+    page = request.args.get('page')
+
+    prods = dao.get_products(kw, 2, page)
+
+    num = dao.count_product()
+
+    return render_template('coffee.html', products=prods)
+
+
+@app.route('/dessert')
+def product_page_dessert():
+    kw = request.args.get('kw')
+    # cate_id = request.args.get('cate_id')
+    page = request.args.get('page')
+
+    prods = dao.get_products(kw, 3, page)
+
+    num = dao.count_product()
+
+    return render_template('dessert.html', products=prods)
+
 
 @app.route('/basket')
 def basket():
@@ -109,6 +134,7 @@ def delete_basket(product_id):
 
     session['basket'] = basket
     return jsonify(utils.count_basket(basket))
+
 
 # hien thi thanh header so luong product trong basket
 @app.context_processor

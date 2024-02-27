@@ -30,7 +30,7 @@
             <div class="card product-cell">
                 <img style="border-radius: 38px 38px 0 0;" src="{{ p.image }}" alt="Card image">
                 <div class="card-body">
-                    <h4 class="card-title">{{ p.name }}</h4>
+                    <h4 class="card-title" id="name-product{{p.id}}">{{ p.name }}</h4>
                     <p class="card-text">{{ p.price }} VNĐ</p>
                     <p style="color: #6D6D6D">Chocolate chip, egg, vanila, ...</p>
                     <a class="btn add-to-cart-btn"
@@ -40,11 +40,6 @@
         </div>
         {% endfor %}
     </div>
-    <ul class="pagination mt-5 prods-page">
-        {% for i in range(pages) %}
-        <li class="page-item"><a class="page-link" href="/cake?page={{ i + 1 }}">{{ i + 1 }}</a></li>
-        {% endfor %}
-    </ul>
 </section>
 
 

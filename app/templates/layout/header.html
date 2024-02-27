@@ -104,8 +104,13 @@
                 <li class="nav-item">
                     <a style= "color: black" class="nav-link" href="#">Workshop</a>
                 </li>
-                <li class="nav-item">
-                    <a style="width: 112px; color: black;" class="nav-link" href="#">Who we are</a>
+                <li class="nav-item dropdown">
+                    <a style="width: 112px; color: black;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><i style="color: #F8CD5B" class="fa-solid fa-star"></i>Tasty</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/cake">Cake</a></li>
+                        <li><a class="dropdown-item" href="/coffee">Coffee</a></li>
+                        <li><a class="dropdown-item" href="/dessert">Dessert</a></li>
+                    </ul>
                 </li>
 
                 {% if current_user.is_authenticated %}
