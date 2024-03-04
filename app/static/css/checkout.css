@@ -1,0 +1,29 @@
+.input-checkout  input{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+.title-checkout label {
+    margin-left: 18%;
+    width: 135px;
+}
+
+.button-checkout {
+    width: 160px;
+    height: 50px;
+    font-style: normal;
+    border-radius: 50px;
+    background: #7A4015;
+    color: white;
+}
+
+.info-products-checkout {
+    margin-left: 18%;
+    width: 800px;
+}
+
+.color {
+        color: #F9A747;
+}

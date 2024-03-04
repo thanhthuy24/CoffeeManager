@@ -1,10 +1,8 @@
 import math
-
 from flask import render_template, request, redirect, jsonify, session
 from app import app, dao, login
 from flask_login import login_user, logout_user, login_required
 import utils
-
 
 @app.route('/')
 def index():
@@ -144,5 +142,12 @@ def common_response():
     }
 
 
+@app.route('/payment')
+def payment_COD():
+    # try
+    return render_template('checkout.html')
+
 if __name__ == '__main__':
+    # from app import checkout
     app.run(debug=True)
+

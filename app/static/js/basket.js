@@ -67,3 +67,18 @@ function deleteBasket(id, obj){
         });
     }
 }
+
+function payCOD(){
+    if(confirm("Bạn có chắc xác nhận đặt hàng? ") === true){
+        fetch("/api/payCOD", {
+            method: "post"
+        }).then(res => res.json()).then(data => {
+            if(data.status === 200){
+                location.reload();
+            }
+            else {
+                alert(data.err_msg)
+            }
+        })
+    }
+}
