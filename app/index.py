@@ -142,7 +142,7 @@ def common_response():
     }
 
 
-@app.route('/payment')
+@app.route('/checkout')
 def payment_COD():
     # try
     return render_template('checkout.html')

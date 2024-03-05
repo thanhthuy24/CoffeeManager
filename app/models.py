@@ -1,5 +1,5 @@
 from app import app, db
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Enum
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Enum, DateTime
 from flask_login import UserMixin
 import enum
 
@@ -23,6 +23,9 @@ class Category(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), nullable=False, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -31,6 +34,23 @@ class Product(db.Model):
     image = Column(String(100))
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
 
+    def __str__(self):
+        return self.name
+
+
+class BaseModel(db.Model):
+    __abstract__ = True
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    created_date = Column(DateTime, default=True)
+
+class Receipt(BaseModel):
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    pass
+
+
+class Receipt():
+    pass
 
 if __name__ == '__main__':
     with app.app_context():

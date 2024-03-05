@@ -18,14 +18,16 @@ def count_basket(basket):
 
 def count_products(product):
     total_amount, total_quantity = 0, 0
-
+    total_product_price = 0
     if product:
         for p in product.values():
             total_amount += p['quantity'] * p['price']
             total_quantity += p['quantity']
+            total_product_price = p['quantity'] * p['price']
 
     return {
         "total_quantity": total_quantity,
-        "total_amount": total_amount
+        "total_amount": total_amount,
+        "total_product_price": total_product_price
 
     }

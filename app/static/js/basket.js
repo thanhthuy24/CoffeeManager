@@ -47,6 +47,7 @@ function updateBasket(id, obj){
         let basketsum = document.getElementsByClassName('basket-total-all');
         for (let t of basketsum)
             t.innerText = data.total_basket;
+
     })
 }
 
