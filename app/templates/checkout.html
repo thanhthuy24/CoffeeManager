@@ -3,7 +3,7 @@
 {% block content %}
 <div>
 
-    <form style="margin-left: 5%;" class="title-checkout input-checkout" method="POST" action="/payment">
+    <form style="margin-left: 5%;" class="title-checkout input-checkout" method="POST" action="/checkout">
         <h4 class="mt-5" style="margin-left: 18%;">THÔNG TIN THANH TOÁN</h4>
         <div class="mb-3 mt-3">
             <label for="ho_ten" class="form-label title-login" style="margin-left: 18%">Họ và tên:</label>
@@ -27,11 +27,14 @@
 
         </div>
         <div class="mb-3 mt-3">
-            <label for="quan_huyen" class="form-label title-login">Quận/Huyện:</label>
-            <select id="quan_huyen" name="quan_huyen" style="width: 200px; height: 50px;">
-                <option value="ha_noi">Quận 1</option>
-                <option value="tp_hcm">Huyện Bình Chánh</option>
-            </select>
+            <label class="form-label title-login">Quận/Huyện:</label>
+
+                <select onchange="shippingPrice()" onclick="totalPrice({{basket.total_basket}})" id="quan_huyen" name="quan_huyen" style="width: 200px; height: 50px;">
+                    <option value=20000 >Quận 1</option>
+                    <option value="35000" >Huyện Bình Chánh</option>
+                </select>
+<!--onload="totalPrice({{basket.total_basket}})"-->
+
         </div>
         <div class="mb-3">
             <label for="ghi_chu" class="form-label title-login">Ghi chú đơn hàng:</label>
@@ -58,6 +61,16 @@
                 <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Subtotal</p>
                 <p style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;">{{ "{:,.0f}".format(basket.total_basket) }} VND</p>
             </div>
+               <hr style="margin-top: -3px; margin-bottom: 10px;">
+             <div class="d-flex">
+                <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Shipping price</p>
+                <p id="shipping" style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;"></p><span style="margin-left: 5px; color: #F6780A;  font-size: x-large; font-weight: 600;">VND</span>
+            </div>
+               <hr style="margin-top: -3px; margin-bottom: 10px;">
+             <div class="d-flex">
+                <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Total</p>
+                <p id="total-price" style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;"></p><span style="margin-left: 5px; color: #F6780A;  font-size: x-large; font-weight: 600;">VND</span>
+            </div>
 
             {% endif %}
         </div>
@@ -71,4 +84,7 @@
 
     </form>
 </div>
+
+
+
 {% endblock %}

@@ -1,4 +1,4 @@
-from app.models import Product, Category, User
+from app.models import Product, Category, User, Receipt, ReceiptDetail, PriceOfProduct
 import hashlib
 from app import app, db
 from flask_login import current_user
@@ -31,12 +31,16 @@ def count_product():
     return Product.query.count()
 
 
-def count_coffee(cate_id):
-    products = Product.query
+def add_receipt(basket):
+    if basket:
+        r = Receipt(user=current_user)
+        db.session.add(r)
 
-    prods = products.filter(Product.category_id.__eq__(cate_id))
+        for b in basket.values():
+            d = ReceiptDetail(total_receipt=b['price'], quantity=b['quantity'], receipt=r, product_id=b['id'])
+            db.session.add(d)
+        db.session.commit()
 
-    return prods.query.count()
 
 def get_user_by_id(user_id):
     return User.query.get(user_id)

@@ -1,11 +1,15 @@
+from sqlalchemy.orm import relationship
+
 from app import app, db
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Enum, DateTime
 from flask_login import UserMixin
 import enum
 
+
 class UserRoleEnum(enum.Enum):
     USER = 1
     ADMIN = 2
+
 
 class User(db.Model, UserMixin):
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -14,6 +18,7 @@ class User(db.Model, UserMixin):
     password = Column(String(100), nullable=False)
     avatar = Column(String(100), default='static/images/img10.jpg')
     user_role = Column(Enum(UserRoleEnum), default=UserRoleEnum.USER)
+    receipts = relationship('Receipt', backref='user', lazy=True)
 
     def __str__(self):
         return self.name
@@ -27,12 +32,20 @@ class Category(db.Model):
         return self.name
 
 
+# gia hien tai tinh trong hoa don (gia sau khi giam gia)
+class PriceOfProduct(db.Model):
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    price_now = Column(Float, nullable=False)
+
+
 class Product(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(50), nullable=False, unique=True)
     price = Column(Float, default=0)
     image = Column(String(100))
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
+    price_now_id = Column(Integer, ForeignKey(PriceOfProduct.id), nullable= True)
+    receipt_details = relationship('ReceiptDetail', backref='product', lazy=True)
 
     def __str__(self):
         return self.name
@@ -44,13 +57,23 @@ class BaseModel(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     created_date = Column(DateTime, default=True)
 
+
 class Receipt(BaseModel):
+    subtotal_receipt = Column(Float, nullable=True)
+    tax_price = Column(Float, nullable=True)
+    shipping_price = Column(Float, default=0)
+
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
-    pass
+    receipt_details = relationship('ReceiptDetail', backref='receipt', lazy=True)
 
 
-class Receipt():
-    pass
+class ReceiptDetail(BaseModel):
+    quantity = Column(Integer, default=0)
+    total_receipt = Column(Float, default=0) # price
+
+    product_id = Column(Integer, ForeignKey(Product.id), nullable=False)
+    receipt_id = Column(Integer, ForeignKey(Receipt.id), nullable=False)
+
 
 if __name__ == '__main__':
     with app.app_context():

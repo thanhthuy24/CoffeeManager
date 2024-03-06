@@ -83,3 +83,13 @@ function payCOD(){
         })
     }
 }
+
+function shippingPrice() {
+        var x = parseFloat(document.getElementById("quan_huyen").value);
+        document.getElementById("shipping").innerHTML = parseFloat(x).toLocaleString('en-US');
+}
+
+function totalPrice(subtotal) {
+        var x = parseFloat(document.getElementById("quan_huyen").value);
+        document.getElementById("total-price").innerText = (x + subtotal).toLocaleString('en-US');
+}

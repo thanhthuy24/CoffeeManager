@@ -66,15 +66,9 @@ def process_user_login():
         if user:
             login_user(user=user)
 
-            # request.args.get('next')
             return redirect('/')
 
     return render_template('login.html')
-
-
-@login.user_loader
-def get_user(user_id):
-    return dao.get_user_by_id(user_id)
 
 
 @app.route('/logout')
@@ -143,11 +137,26 @@ def common_response():
 
 
 @app.route('/checkout')
-def payment_COD():
-    # try
+def checkout_receipt():
     return render_template('checkout.html')
 
+
+@app.route('/api/payCOD', methods=['post'])
+def payment_cod():
+    try:
+        dao.add_receipt(session.get('basket'))
+    except Exception as ex:
+        return jsonify({'status': 500, "err_msg": str(ex)})
+    else:
+        del session['basket']
+        return jsonify({'status': 200})
+
+
+@login.user_loader
+def get_user(user_id):
+    return dao.get_user_by_id(user_id)
+
+
 if __name__ == '__main__':
-    # from app import checkout
     app.run(debug=True)
 
