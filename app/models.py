@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy.orm import relationship
 
 from app import app, db
@@ -55,13 +57,13 @@ class BaseModel(db.Model):
     __abstract__ = True
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    created_date = Column(DateTime, default=True)
+    created_date = Column(DateTime, default=datetime.now())
 
 
 class Receipt(BaseModel):
-    subtotal_receipt = Column(Float, nullable=True)
-    tax_price = Column(Float, nullable=True)
-    shipping_price = Column(Float, default=0)
+    # subtotal_receipt = Column(Float, nullable=True)
+    # tax_price = Column(Float, nullable=True)
+    # shipping_price = Column(Float, default=0)
 
     user_id = Column(Integer, ForeignKey(User.id), nullable=False)
     receipt_details = relationship('ReceiptDetail', backref='receipt', lazy=True)
@@ -82,6 +84,10 @@ if __name__ == '__main__':
         import hashlib
 
         u1 = User(name='Abc', username='Abc01', password=str(hashlib.md5('12345'.encode('utf-8')).hexdigest()))
+        u = User(name='Admin', username='admin',
+                 password=str(hashlib.md5('123456'.encode('utf-8')).hexdigest()),
+                 user_role=UserRoleEnum.ADMIN)
+        db.session.add(u)
         db.session.add(u1)
         db.session.commit()
 

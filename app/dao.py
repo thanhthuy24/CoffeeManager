@@ -35,7 +35,6 @@ def add_receipt(basket):
     if basket:
         r = Receipt(user=current_user)
         db.session.add(r)
-
         for b in basket.values():
             d = ReceiptDetail(total_receipt=b['price'], quantity=b['quantity'], receipt=r, product_id=b['id'])
             db.session.add(d)

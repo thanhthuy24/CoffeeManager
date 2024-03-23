@@ -71,11 +71,12 @@ function deleteBasket(id, obj){
 
 function payCOD(){
     if(confirm("Bạn có chắc xác nhận đặt hàng? ") === true){
-        fetch("/api/payCOD", {
+        fetch('/api/payCOD', {
             method: "post"
         }).then(res => res.json()).then(data => {
             if(data.status === 200){
-                location.reload();
+                alert("yes");
+                windows.location.href('/basket');
             }
             else {
                 alert(data.err_msg)

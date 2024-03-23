@@ -142,15 +142,17 @@ def checkout_receipt():
 
 
 @app.route('/api/payCOD', methods=['post'])
+@login_required
 def payment_cod():
     try:
         dao.add_receipt(session.get('basket'))
     except Exception as ex:
+        print(ex)
         return jsonify({'status': 500, "err_msg": str(ex)})
     else:
         del session['basket']
-        return jsonify({'status': 200})
-
+        # return jsonify({'status': 200})
+        return redirect('/')
 
 @login.user_loader
 def get_user(user_id):
