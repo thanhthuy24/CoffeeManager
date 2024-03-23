@@ -69,14 +69,24 @@ function deleteBasket(id, obj){
     }
 }
 
+//function checkout(){
+//    fetch('/api/checkout', {
+//        method: "post"
+//    }).then(res => res.json()).then(data => {
+//        if(data.status === 200){
+//            alert("123")
+//        }
+//    })
+//}
+
 function payCOD(){
     if(confirm("Bạn có chắc xác nhận đặt hàng? ") === true){
         fetch('/api/payCOD', {
             method: "post"
         }).then(res => res.json()).then(data => {
             if(data.status === 200){
-                alert("yes");
-                windows.location.href('/basket');
+                alert("Thanh toán thành công!")
+                location.reload();
             }
             else {
                 alert(data.err_msg)
@@ -84,13 +94,13 @@ function payCOD(){
         })
     }
 }
-
-function shippingPrice() {
-        var x = parseFloat(document.getElementById("quan_huyen").value);
-        document.getElementById("shipping").innerHTML = parseFloat(x).toLocaleString('en-US');
-}
-
-function totalPrice(subtotal) {
-        var x = parseFloat(document.getElementById("quan_huyen").value);
-        document.getElementById("total-price").innerText = (x + subtotal).toLocaleString('en-US');
-}
+//
+//function shippingPrice() {
+//        var x = parseFloat(document.getElementById("quan_huyen").value);
+//        document.getElementById("shipping").innerHTML = parseFloat(x).toLocaleString('en-US');
+//}
+//
+//function totalPrice(subtotal) {
+//        var x = parseFloat(document.getElementById("quan_huyen").value);
+//        document.getElementById("total-price").innerText = (x + subtotal).toLocaleString('en-US');
+//}

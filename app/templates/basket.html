@@ -45,25 +45,27 @@
             </div>
             {% endfor %}
         </div>
-    {% else %}
-        <div class="text-info text-center">Nothing</div>
-    {% endif %}
+
 
 
         <div style="width: 350px; padding: 20px;" class="div-side">
             <!--        tong tien-->
             <h4 class="title-pros-basket">Order summary</h4>
-            <p>Subtotal <span style="margin-left: 48%;" class=" basket-total">{{basket.total_amount}}</span>VND</p>
+            <p>Subtotal <span style="margin-left: 48%;" class=" basket-total">{{ "{:,.0f}".format(basket.total_basket) }}</span>VND</p>
             <p>Shipping <span style="margin-left: 50%;">0</span>VND</p>
-            <p>Tax <span style="margin-left: 59%;" class="basket-tax">{{basket.tax_basket}}</span>VND</p>
-            <h4 class="title-pros-basket">Total <span style="margin-left: 40%;" class="basket-total-all">{{basket.total_basket}}</span>VND</p></h4>
+            <p>Tax <span style="margin-left: 59%;" class="basket-tax">{{ "{:,.0f}".format(basket.total_basket) }}</span>VND</p>
+            <h4 class="title-pros-basket">Total <span style="margin-left: 40%;" class="basket-total-all"> {{"{:,.0f}".format(basket.total_basket) }} </span>VND</p></h4>
             {% if current_user.is_authenticated %}
-            <a class="nav-link basket" style="width: 300px; color: white;" href="/checkout">Continue to payment<i
+            <a class="nav-link basket" style="width: 300px; color: white;" href="/checkout"> Fulfill your information<i
                     style="margin-left: 35%;" class="fa-solid fa-arrow-right"></i></a>
+            <button name="cod" class="button-checkout" style="margin-left: 5%;" onclick="payCOD()">Thanh toán trực tiếp</button>
             {% else %}
             <p><a href="/login?next=/basket">Click here</a> to login and payment!</p>
             {% endif %}
         </div>
+        {% else %}
+            <div class="alert alert-warning">Nothing in your basket!</div>
+        {% endif %}
     </div>
 
 </section>

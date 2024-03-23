@@ -141,8 +141,13 @@ def checkout_receipt():
     return render_template('checkout.html')
 
 
+@app.route('/payment')
+def payment():
+    return render_template('payment.html')
+
+
 @app.route('/api/payCOD', methods=['post'])
-@login_required
+# @login_required
 def payment_cod():
     try:
         dao.add_receipt(session.get('basket'))
@@ -151,8 +156,8 @@ def payment_cod():
         return jsonify({'status': 500, "err_msg": str(ex)})
     else:
         del session['basket']
-        # return jsonify({'status': 200})
-        return redirect('/')
+        return jsonify({'status': 200})
+        # return redirect('/payment')
 
 @login.user_loader
 def get_user(user_id):

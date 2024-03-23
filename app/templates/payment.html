@@ -1,0 +1,51 @@
+{% extends 'layout/base.html'%}
+
+{% block content %}
+
+<h4 class="mt-5" style="margin-left: 18%;">THÔNG TIN ĐƠN HÀNG</h4>
+
+<div class="info-products-checkout">
+    {% if 'basket' in session %}
+    <div style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Sản phẩm</div>
+    {% for b in session['basket'].values() %}
+    <div>
+        <p style="color: #F9A747; margin-bottom: 0;font-size: x-large; font-weight: 500;">{{b.name}}</p>
+        <div class="d-flex">
+            <p>x{{b.quantity}}</p>
+            <p style="margin-left: 35px; color: #F6780A; font-weight: 600; ">{{ "{:,.0f}".format(b.price * b.quantity)
+                }} VND</p>
+        </div>
+        <hr style="margin-top: -3px; margin-bottom: 10px;">
+
+    </div>
+    {% endfor %}
+    <div class="d-flex">
+        <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Subtotal</p>
+        <p style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;">{{
+            "{:,.0f}".format(basket.total_basket) }} VND</p>
+    </div>
+<!--    <hr style="margin-top: -3px; margin-bottom: 10px;">-->
+<!--    <div class="d-flex">-->
+<!--        <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Shipping price</p>-->
+<!--        <p id="shipping" style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;"></p><span-->
+<!--            style="margin-left: 5px; color: #F6780A;  font-size: x-large; font-weight: 600;">VND</span>-->
+<!--    </div>-->
+<!--    <hr style="margin-top: -3px; margin-bottom: 10px;">-->
+<!--    <div class="d-flex">-->
+<!--        <p style="margin-bottom: 15px; font-weight: 600; font-size: x-large;">Total</p>-->
+<!--        <p id="total-price" style="margin-left: 35px; color: #F6780A;  font-size: x-large; font-weight: 600;"></p><span-->
+<!--            style="margin-left: 5px; color: #F6780A;  font-size: x-large; font-weight: 600;">VND</span>-->
+<!--    </div>-->
+    {% else %}
+        <div class="alert alert-warning">Nothing in your basket!</div>
+    {% endif %}
+</div>
+
+<div class="mt-3" style="margin-left: 18%">
+    <button type="submit" name="momo" class="button-checkout" style="margin-bottom: 11px;">Thanh toán MOMO
+    </button>
+    <button name="cod" class="button-checkout" style="margin-left: 5%;" onclick="payCOD()">Thanh toán trực tiếp
+    </button>
+</div>
+
+{% endblock %}
